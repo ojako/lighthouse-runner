@@ -19,10 +19,19 @@ const PASSWORD = process.argv.slice(2)[2]
 const page1 = process.argv.slice(2)[3]
 const page2 = process.argv.slice(2)[4]
 const page3 = process.argv.slice(2)[5]
+const page4 = process.argv.slice(2)[6]
+const page5 = process.argv.slice(2)[7]
+const page6 = process.argv.slice(2)[8]
+const page7 = process.argv.slice(2)[9]
+const page8 = process.argv.slice(2)[10]
+const page9 = process.argv.slice(2)[11]
+const page10 = process.argv.slice(2)[12]
+const page11 = process.argv.slice(2)[13]
+const page12 = process.argv.slice(2)[14]
 
 if (!DOMAIN || !EMAIL || !PASSWORD) {
   console.log('You need to pass the correct arguments: "domain", "email", "password"')
-  console.log('e.g. "node lighthouse.js https://my-website.com email@wazoku.com 123"')
+  console.log('e.g. "node lighthouse.js https://my-website.com email@email.com 123"')
   console.log('You can pass up to 3 additional pages to be checked if you want. Include the pages as "#/page/123 #/article/123 #/post/123"')
 
   return
@@ -101,16 +110,34 @@ async function login(browser, origin) {
 async function main() {
   const browser = await puppeteer.launch({
     args: [`--remote-debugging-port=${PORT}`],
-    headless: true,
+    headless: false,
   })
 
   await login(browser, DOMAIN)
-  
+
   if (page1) {await test(`${DOMAIN}${page1}`)}
 
   if (page2) {await test(`${DOMAIN}${page2}`)}
 
   if (page3) {await test(`${DOMAIN}${page3}`)}
+
+  if (page4) {await test(`${DOMAIN}${page4}`)}
+
+  if (page5) {await test(`${DOMAIN}${page5}`)}
+
+  if (page6) {await test(`${DOMAIN}${page6}`)}
+
+  if (page7) {await test(`${DOMAIN}${page7}`)}
+
+  if (page8) {await test(`${DOMAIN}${page8}`)}
+
+  if (page9) {await test(`${DOMAIN}${page9}`)}
+
+  if (page10) {await test(`${DOMAIN}${page10}`)}
+
+  if (page11) {await test(`${DOMAIN}${page11}`)}
+
+  if (page12) {await test(`${DOMAIN}${page12}`)}
 
   await browser.close()
 
